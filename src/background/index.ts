@@ -1,4 +1,10 @@
-chrome.runtime.onMessage.addListener(async (msg, sender, sendResponse) => {
+/// <reference types="chrome" />
+
+chrome.runtime.onMessage.addListener(async (
+  msg: { type?: string; pageData?: any },
+  sender: chrome.runtime.MessageSender,
+  sendResponse: (response?: any) => void
+) => {
   if (msg.type === "GENERATE_REPORT") {
     // Orquestar: recibe datos, llama a report_md y descarga el archivo
     const { pageData } = msg;

@@ -1,3 +1,5 @@
+
+/// <reference types="chrome" />
 import { maskPII } from './pii-guard';
 import { classifyBlocks } from '../modules/classification/local_rules';
 
@@ -65,11 +67,13 @@ async function collectPageData() {
 
 // Utilidad para selector único
 function getUniqueSelector(el: Element): string {
-  if (el.id) return `#${el.id}`;
+  if ((el as HTMLElement).id) return `#${(el as HTMLElement).id}`;
   let path = [];
   while (el && el.nodeType === 1 && el !== document.body) {
     let selector = el.nodeName.toLowerCase();
-    if (el.className) selector += '.' + Array.from(el.classList).join('.');
+    if ((el as HTMLElement).classList && (el as HTMLElement).classList.length > 0) {
+      selector += '.' + Array.from((el as HTMLElement).classList).join('.');
+    }
     path.unshift(selector);
     el = el.parentElement!;
   }
@@ -77,10 +81,16 @@ function getUniqueSelector(el: Element): string {
 }
 
 // Trigger desde popup
-chrome.runtime.onMessage.addListener(async (msg, sender, sendResponse) => {
-  if (msg.type === "COLLECT_PAGE_DATA") {
-    const data = await collectPageData();
-    sendResponse({ pageData: data });
+chrome.runtime.onMessage.addListener(
+  async (
+    msg: { type?: string },
+    sender: chrome.runtime.MessageSender,
+    sendResponse: (response?: any) => void
+  ) => {
+    if (msg.type === "COLLECT_PAGE_DATA") {
+      const data = await collectPageData();
+      sendResponse({ pageData: data });
+    }
+    return true;
   }
-  return true;
-});
+);
