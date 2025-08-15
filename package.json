@@ -1,0 +1,17 @@
+{
+  "name": "exploratory-webpage-analizer",
+  "version": "1.0.0",
+  "description": "Chrome extension for exploratory webpage analysis (MVP1)",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "test": "vitest run",
+    "test:e2e": "node test/e2e/generate_report.e2e.ts"
+  },
+  "devDependencies": {
+    "typescript": "^5.4.0",
+    "vite": "^5.0.0",
+    "vitest": "^1.0.0",
+    "puppeteer": "^22.0.0"
+  }
+}

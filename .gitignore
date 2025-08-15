@@ -1,0 +1,34 @@
+# Node
+node_modules/
+
+# Build
+/dist/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# Test output
+coverage/
+
+# Misc
+*.local
+.env
+.env.*
+
+# Chrome extension
+*.crx
+*.pem
+
+# Reports
+*.md.report

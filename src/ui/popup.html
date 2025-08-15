@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Webpage Analyzer</title>
+  <style>
+    body { font-family: sans-serif; width: 250px; }
+    label { display: block; margin: 8px 0 4px; }
+    button { margin-top: 12px; width: 100%; }
+  </style>
+</head>
+<body>
+  <h3>Webpage Analyzer</h3>
+  <label><input type="checkbox" id="toggle-capture" checked> Capturar</label>
+  <label><input type="checkbox" id="toggle-classify" checked> Clasificar</label>
+  <label><input type="checkbox" id="toggle-sensitive" checked> PII sensible</label>
+  <button id="run-btn">Generar reporte</button>
+  <div id="status"></div>
+  <script type="module" src="./popup.ts"></script>
+</body>
+</html>
